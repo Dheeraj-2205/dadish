@@ -7,7 +7,6 @@
     padding: 1.2rem;
 }
 .container > div{
-    border: 1px solid red ;
     width: 85%;
     justify-items: center;
 }
