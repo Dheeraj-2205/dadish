@@ -1,0 +1,28 @@
+.cartItem{
+    position: absolute;
+    top: 15%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 4vmax;
+    color: black;
+    padding: 1.2rem;
+}
+
+.heading{
+    font-size: larger;
+    font-weight: 600;
+}
+
+.cartItem > div{
+    width: 85%;
+    justify-items: center;
+}
+.cartItem > div > img{
+    border: 1px solid black;
+    height: 50vh ;
+    width: 100%;
+    padding: 3rem;
+    align-self: center;
+    
+    border-radius: 5%;
+} 
