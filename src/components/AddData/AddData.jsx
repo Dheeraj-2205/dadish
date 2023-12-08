@@ -39,8 +39,6 @@ const AddData = () => {
         const price = product.price * 83;
         const discount = price > 300 ? price * 0.8 : 0;
         const discountData = price - discount;
-        setTwentyPercentDiscount(discountData);
-        setAmount(price+acc);
         return acc + price;
       }, 0);
 
@@ -64,7 +62,7 @@ const AddData = () => {
         ))}
         <div id="amountData">
           <h3>Total Price :- {(amount).toFixed(2)}</h3>
-          <h3>DisCount Price :- {(amount * 0.2).toFixed(2)}</h3>
+          <h3>DisCount Price :- {amount > 300 ?(amount * 0.2).toFixed(2) : 0}</h3>
           <h3 className={style.heading}>Total {(amount - amount * 0.2).toFixed(2)}</h3>
         </div>
       </div>
