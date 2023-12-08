@@ -1,6 +1,6 @@
 .cont{
     position: fixed;
-    z-index: 1000;
+    z-index: 100;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -8,7 +8,6 @@
     height: 8vh;
     color: white;
     background-color: black;
-    /* margin-top: -5%; */
 }
 .smallCont{
     display: flex;
