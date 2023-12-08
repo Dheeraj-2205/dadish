@@ -37,14 +37,14 @@ const AddData = () => {
     const calculateTotal = () => {
       const newTotal = data.reduce((acc, product) => {
         const price = product.price * 83;
-        const discount = price > 300 ? price - 0.8 : price;
-        const discountData = price > 300 ? price - 0.8 * price  : price;
+        const discount = price > 300 ? price * 0.8 : 0;
+        const discountData = price - discount;
         setTwentyPercentDiscount(discountData);
         setAmount(price+acc);
-        return acc + discount;
+        return acc + price;
       }, 0);
 
-      setTotal(amount - twentyPercentDiscount);
+      setTotal(newTotal);
     };
 
     calculateTotal();
@@ -64,8 +64,8 @@ const AddData = () => {
         ))}
         <div id="amountData">
           <h3>Total Price :- {(amount).toFixed(2)}</h3>
-          <h3>DisCount Price :- {(twentyPercentDiscount).toFixed(2)}</h3>
-          <h3 className={style.heading}>Total {(total).toFixed(2)}</h3>
+          <h3>DisCount Price :- {(amount * 0.2).toFixed(2)}</h3>
+          <h3 className={style.heading}>Total {(amount - amount * 0.2).toFixed(2)}</h3>
         </div>
       </div>
 
