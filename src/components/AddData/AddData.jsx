@@ -5,7 +5,9 @@ import style from "./addData.module.css";
 const AddData = () => {
   const [data, setData] = useState([]);
   const [arr, setArr] = useState([]);
-  const [total,setTotal] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [twentyPercentDiscount, setTwentyPercentDiscount] = useState(0);
 
   const fetchSingleProduct = async (productId) => {
     try {
@@ -28,22 +30,25 @@ const AddData = () => {
       setData(productDataArray);
     };
 
-
     fetchDataForProducts();
   }, []);
 
   useEffect(() => {
     const calculateTotal = () => {
       const newTotal = data.reduce((acc, product) => {
-        const price = product.price * 83; 
-        const discount = price > 300 ? 0.8 * price : price;
+        const price = product.price * 83;
+        const discount = price > 300 ? price - 0.8 : price;
+        const discountData = price > 300 ? price - 0.8 * price  : price;
+        setTwentyPercentDiscount(discountData);
+        setAmount(price+acc);
         return acc + discount;
       }, 0);
 
-      setTotal(newTotal);
+      setTotal(amount - twentyPercentDiscount);
     };
 
     calculateTotal();
+
   }, [data]);
 
   return (
@@ -57,12 +62,15 @@ const AddData = () => {
             <p>Price {ele.price * 83}</p>
           </div>
         ))}
-
-        <h3 className={style.heading}>Total {total.toFixed(2)}</h3>
+        <div id="amountData">
+          <h3>Total Price :- {(amount).toFixed(2)}</h3>
+          <h3>DisCount Price :- {(twentyPercentDiscount).toFixed(2)}</h3>
+          <h3 className={style.heading}>Total {(total).toFixed(2)}</h3>
+        </div>
       </div>
+
     </>
   );
 };
 
 export default AddData;
-

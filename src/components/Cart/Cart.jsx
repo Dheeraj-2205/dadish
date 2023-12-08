@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from "../Cart/cart.module.css";
 import Loading from "../Loading/Loading";
 import Navbar from "../Navbar/Navbar";
+import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
@@ -23,9 +24,9 @@ const Cart = () => {
   };
 
   const handleCart = (id) => {
+    toast.success("Product Added Successfully...")
     setCount(count + 1);
     setArr((prevArr) => [...prevArr, id]);
-    console.log(arr)
     localStorage.setItem("arr", JSON.stringify(arr));
   };
 
@@ -45,6 +46,7 @@ const Cart = () => {
   ) : (
     <>
       <Navbar props={count} />
+      <Toaster/>
       <div className={style.container}>
         {data.map((ele) => (
           <div key={ele.id}>
@@ -52,7 +54,6 @@ const Cart = () => {
             <h3>Title :- {ele.title}</h3>
             <p>Price :- &#8377;{ele.price * 83}</p>
             <p>Rate :- {ele.rating.rate}</p>
-            <p>Quantity :- {5}</p>
             <button onClick={() => handleCart(ele.id)}>Add To Cart</button>
           </div>
         ))}

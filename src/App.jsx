@@ -14,6 +14,7 @@ function App() {
           <Route path="/cart" element={<AddData />} />
         </Routes>
       </BrowserRouter>
+      {/* <Footer/> */}
     </>
   );
 }
